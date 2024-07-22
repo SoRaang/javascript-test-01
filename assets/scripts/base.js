@@ -102,13 +102,13 @@ const createNewPage = () => {
     pageContainer.style.width = '510px';
 
     for (let i = 0; i < 20; i ++) {
-        const newPage = document.createElement('div');
+        const newItem = document.createElement('div');
 
-        newPage.style.width = '120px';
-        newPage.style.height = Math.floor(Math.random() * 100) + 50 + 'px';
-        newPage.innerText = i;
+        newItem.style.width = '120px';
+        newItem.style.height = Math.floor(Math.random() * 100) + 50 + 'px';
+        newItem.innerText = i;
 
-        pageContainer.appendChild(newPage);
+        pageContainer.appendChild(newItem);
     }
 
     infScrollContainer.appendChild(pageContainer);
