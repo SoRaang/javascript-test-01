@@ -27,6 +27,26 @@
         <link rel="preload" as="font" type="font/woff2" crossorigin="" href="./assets/fonts/SUIT-Variable.woff2">
         <link rel="stylesheet" href="./assets/css/style.css">
 
+        <style>
+            #classTaker {
+                display: grid;
+                place-items: center;
+                width: 300px;
+                height: 300px;
+                outline: 1px dotted lightblue;
+                transition: outline .3s;
+
+                &.on-hover {
+                    background-color: salmon;
+                    outline: 5px solid tomato;
+                }
+
+                &.class-on {
+                    background-image: radial-gradient(circle at center, rgb(153 31 0), rgb(255 113 45));
+                }
+            }
+        </style>
+
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/f67ce84ea1.js" crossorigin="anonymous"></script>
     </head>
@@ -38,7 +58,17 @@
             </header> <!-- #headPrimary -->
 
             <div id="contentView">
+                <div id="quadSquare"></div>
 
+                <div id="gradientContainer"></div>
+
+                <div id="classTaker">
+                    <button type="button" id="btnClassToggler">클래스 주기 / 제거하기</button>
+                </div>
+
+                <form action="" id="frmRegex">
+                    <input type="text">
+                </form>
             </div> <!-- #contentView -->
         </div> <!-- #wrap -->
 
