@@ -125,3 +125,73 @@ window.addEventListener('scroll', (e) => {
         createNewPage();
     }
 });
+
+/** 슬라이더 */
+
+const sliderContainer = document.getElementById('mySlider');
+const slidesWrapper = document.createElement('div');
+const btnPrev = document.getElementById('btnPrev');
+const btnNext = document.getElementById('btnNext');
+const slideItems = [ 0, 1, 2, 3, 4 ];
+
+let currentSlide = 0;
+let beforeSlide = currentSlide - 1;
+let afterSlide = currentSlide + 1;
+let slideWidth = window.innerWidth;
+
+window.addEventListener('resize', () => slideWidth = window.innerWidth);
+
+sliderContainer.style.position = 'relative';
+sliderContainer.style.width = '100vw';
+sliderContainer.style.height = '50vh';
+
+slidesWrapper.style.display = 'flex';
+slidesWrapper.style.flexFlow = 'row nowrap';
+slidesWrapper.style.position = 'absolute';
+slidesWrapper.style.insetBlock = 0;
+slidesWrapper.style.insetInlineStart = currentSlide * window.innerWidth;
+slidesWrapper.style.width = 'max-content';
+slidesWrapper.style.height = 'inherit';
+
+sliderContainer.prepend(slidesWrapper);
+
+slideItems.forEach(item => {
+    const slideItemElement = document.createElement('div');
+
+    slideItemElement.style.width = '100vw';
+    slideItemElement.style.height = '100%';
+    slideItemElement.innerHTML = item;
+
+    slidesWrapper.appendChild(slideItemElement);
+});
+
+btnPrev.addEventListener('click', () => slideMove('prev'));
+btnNext.addEventListener('click', () => slideMove('next'));
+
+function slideMove(direction) {
+    if (afterSlide === slideItems.length) { // 두 번째 인덱스에서 버튼이 멋대로 비활성화된다. 수정 필요
+        btnNext.setAttribute('disabled', true);
+    } else if (beforeSlide === 0) {
+        btnPrev.setAttribute('disabled', true)
+    } else {
+        btnPrev.removeAttribute('disabled');
+        btnNext.removeAttribute('disabled');
+    }
+
+    switch(direction) {
+        case 'prev':
+            currentSlide = currentSlide - 1;
+            console.log(currentSlide);
+        break;
+
+        case 'next':
+            currentSlide = currentSlide + 1;
+            console.log(currentSlide);
+        break;
+    }
+
+    beforeSlide = currentSlide - 1;
+    afterSlide = currentSlide + 1;
+
+    console.log(currentSlide, beforeSlide, afterSlide);
+}
