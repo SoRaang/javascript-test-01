@@ -54,7 +54,7 @@
     <body>
         <div id="wrap">
             <header id="headPrimary">
-
+                오늘 jQuery 수업이 대부분이므로 가능한 부분은 VanillaJS로 실습 진행
             </header> <!-- #headPrimary -->
 
             <div id="contentView">
@@ -67,8 +67,19 @@
                 </div>
 
                 <form action="" id="frmRegex">
-                    <input type="text">
+                    <input type="email" name="user-id" id="txtID" placeholder="e-mail 주소 (최대 30자)">
+                    <span id="isCorrectID"></span>
+                    <input type="password" name="user-password" id="txtPW" maxlength="16" placeholder="비밀번호">
+                    <button type="submit">전송</button>
                 </form>
+
+                <div id="intervalAnim">
+                    <img id="imgAnimation" src="" alt="">
+                </div>
+
+                <div id="infinityScroll">
+
+                </div>
             </div> <!-- #contentView -->
         </div> <!-- #wrap -->
 

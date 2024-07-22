@@ -50,4 +50,78 @@ btnToggler.addEventListener('click', (e) => {
     e.preventDefault();
 });
 
-/** 기본 이벤트 리스너의 제거 (폼 submit 등) */
+/** 입력 양식의 포커스, 유효성 체크 */
+
+const frmRegex = document.getElementById('frmRegex');
+const inputID = document.getElementById('txtID');
+const inputPW = document.getElementById('txtPW');
+const labelIsCorrect = document.getElementById('isCorrectID');
+
+const mailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+
+inputID.addEventListener('keydown', () => {
+    if (mailCheck.test(inputID.value) === false) {
+        labelIsCorrect.textContent = '메일 주소가 올바르지 않습니다.'
+    } else {
+        labelIsCorrect.textContent = '';
+    }
+
+    if (inputID.value.length >= 30) {
+        inputPW.focus();
+    }
+});
+
+inputPW.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && inputPW.value.length === 0) {
+        inputID.focus();
+    }
+});
+
+/** setInterval을 이용한 애니메이션 */
+
+const animObject = document.getElementById('imgAnimation');
+const animFrames = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+
+let currentFrame = 0
+
+setInterval(() => {
+    animObject.src = './assets/images/' + (animFrames[ currentFrame % animFrames.length ]) + '.png';
+    currentFrame = currentFrame + 1;
+}, 50);
+
+/** 무한 스크롤 */
+
+const infScrollContainer = document.getElementById('infinityScroll');
+
+const createNewPage = () => {
+    const pageContainer = document.createElement('div');
+
+    pageContainer.style.display = 'flex';
+    pageContainer.style.flexFlow = 'row wrap';
+    pageContainer.style.gap = '10px';
+    pageContainer.style.width = '510px';
+
+    for (let i = 0; i < 20; i ++) {
+        const newPage = document.createElement('div');
+
+        newPage.style.width = '120px';
+        newPage.style.height = Math.floor(Math.random() * 100) + 50 + 'px';
+        newPage.innerText = i;
+
+        pageContainer.appendChild(newPage);
+    }
+
+    infScrollContainer.appendChild(pageContainer);
+
+    console.log('20개 출력 끝!');
+}
+
+window.addEventListener('scroll', (e) => {
+    let currentLocation = document.documentElement.scrollTop;
+    let windowHeight = window.innerHeight;
+    let totalHeight = document.body.scrollHeight;
+
+    if ((currentLocation + windowHeight) >= totalHeight) {
+        createNewPage();
+    }
+});
